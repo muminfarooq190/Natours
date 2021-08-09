@@ -1,0 +1,49 @@
+.row{
+    max-width: $grid-width;
+ 
+    margin: 0 auto;
+   
+
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+    }
+    @include clearfix;//.row::after{} is wht this mixin does well it paints a pseudo element besides the element and we spexify content to  be empty "" cox we jus want to end both floats and give them height
+    
+    //this attribute selector is jus for the principle of DRY ..
+    [class^="col-"]{
+    
+        float: left;
+
+        &:not(:last-child){
+            margin-right: $gutter-horizontal;
+        }
+
+        
+    }
+    //here we divided row into two equal colmns and gutter between them
+    .col-1-of-2{
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+    //here we divided row into three equal colmns and gutter between them
+    .col-1-of-3{
+        width: calc((100% - 2 * #{$gutter-horizontal})/3);
+    }
+    //here this column will be made of two columns thats y we multiplied the width f simple column by 2 and added gutter that is between them
+    .col-2-of-3{    
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+
+    }
+    //here the width of one column is 100% - 3 gutters and then divide that by 4
+    .col-1-of-4{
+        width: calc((100% - 3 * #{$gutter-horizontal}) /4);
+    }
+
+    .col-2-of-4{
+        width: calc(2*((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4{
+        width: calc(3*((100% - 3 * #{$gutter-horizontal}) /4) + 2 * #{$gutter-horizontal});
+    }
+  
+}
